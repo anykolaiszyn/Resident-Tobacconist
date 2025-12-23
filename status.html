@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domain Status | The Resident Tobacconist</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .status-card { max-width: 720px; margin: var(--space-xl) auto; background: var(--color-charcoal); border: 1px solid var(--color-slate); border-radius: var(--border-radius); padding: var(--space-xl); }
+    .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+    .status-item { background: var(--color-ink); border: 1px solid var(--color-slate); border-radius: var(--border-radius); padding: var(--space-md); }
+    .ok { color: #43b581; }
+    .warn { color: #e0b000; }
+    .err { color: #e57373; }
+  </style>
+</head>
+<body>
+  <header class="no-print">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="nav-brand">The Resident Tobacconist</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="humidor-programs.html">Humidor Programs</a></li>
+          <li><a href="distribution.html">Distribution</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="capability.html">Capability</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="status-card">
+        <h1 class="mb-md">Domain Status</h1>
+        <p class="mb-lg" style="color: var(--color-off-white);">Client-side verification of current origin and HTTPS state.</p>
+        <div class="status-grid">
+          <div class="status-item">
+            <h3>Origin</h3>
+            <p id="origin-host"></p>
+            <p id="origin-protocol"></p>
+            <p id="origin-path"></p>
+          </div>
+          <div class="status-item">
+            <h3>Checks</h3>
+            <p id="check-domain"></p>
+            <p id="check-https"></p>
+            <p id="check-www"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="no-print">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-notice">21+</p>
+        <p class="footer-compliance">Tobacco programs provided for compliant hospitality environments.</p>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const host = location.hostname;
+      const protocol = location.protocol;
+      const path = location.pathname;
+      document.getElementById('origin-host').textContent = 'Host: ' + host;
+      document.getElementById('origin-protocol').textContent = 'Protocol: ' + protocol;
+      document.getElementById('origin-path').textContent = 'Path: ' + path;
+
+      const domainOk = (host === 'theresidenttobacconist.com' || host === 'www.theresidenttobacconist.com');
+      document.getElementById('check-domain').innerHTML = (domainOk ? '<span class="ok">✓</span>' : '<span class="warn">!</span>') + ' Domain: ' + (domainOk ? 'theresidenttobacconist.com' : host);
+
+      const httpsOk = protocol === 'https:';
+      document.getElementById('check-https').innerHTML = (httpsOk ? '<span class="ok">✓</span>' : '<span class="err">✗</span>') + ' HTTPS: ' + (httpsOk ? 'enabled' : 'not enabled');
+
+      const isWww = host.startsWith('www.');
+      document.getElementById('check-www').innerHTML = (isWww ? '<span class="ok">ℹ</span>' : '<span class="ok">ℹ</span>') + ' Host variant: ' + (isWww ? 'www' : 'apex');
+    })();
+  </script>
+</body>
+</html>

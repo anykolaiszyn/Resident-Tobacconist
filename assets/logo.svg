@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Monogram: RT (Resident Tobacconist) -->
+  <g stroke="#b8935e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- R -->
+    <path d="M 25 30 L 25 70 M 25 30 L 35 30 Q 42 30 42 37 Q 42 44 35 44 L 25 44 M 35 44 L 42 70" />
+    <!-- T -->
+    <path d="M 55 35 L 75 35 M 65 35 L 65 70" />
+  </g>
+  <!-- Decorative border -->
+  <rect x="10" y="10" width="80" height="80" stroke="#b8935e" stroke-width="1" fill="none" rx="2" />
+</svg>

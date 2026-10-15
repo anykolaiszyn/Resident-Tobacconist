@@ -38,7 +38,10 @@ This is a static website for **The Resident Tobacconist**, a specialized steward
 │   └── script.js              # Minimal JavaScript (optional)
 ├── robots.txt                 # Search engine directives
 ├── sitemap.xml                # Site map for SEO
-├── CNAME                      # Custom domain configuration
+├── CNAME                      # Custom domain for GitHub Pages
+├── .github/
+│   └── workflows/
+│       └── static.yml         # Pages deploy workflow (runs on push to main)
 └── README.md                  # This file
 ```
 
@@ -82,16 +85,20 @@ Since this is a static site, you can preview it locally by:
    git push -u origin main
    ```
 
-### Step 2: Enable GitHub Pages
+### Step 2: How Pages builds this repository
 
-1. Go to your repository on GitHub
-2. Click **Settings**
-3. Scroll to **Pages** (in the left sidebar under "Code and automation")
-4. Under **Source**, select:
-   - **Branch:** `main`
-   - **Folder:** `/ (root)`
-5. Click **Save**
-6. GitHub will provide a URL like: `https://YOUR-USERNAME.github.io/Resident-Tobacconist/`
+This repository deploys through **GitHub Actions**, not from a branch.
+
+1. Go to the repository on GitHub, then **Settings > Pages**
+2. Under **Source** it reads **GitHub Actions**
+3. Each push to `main` runs `.github/workflows/static.yml`, which uploads the
+   repository root as the Pages artifact (`path: '.'`, because the HTML sits at
+   the root rather than in a subdirectory) and deploys it
+
+**Do not change the Pages source.** On 15 Oct 2026 the board ruled that this
+repository stays on the workflow route, and reserved Pages settings to the
+owner. Switching **Source** to *Deploy from a branch* would undo that fix. If
+Pages looks misconfigured, raise it as an issue instead of changing it.
 
 ### Step 3: Configure Custom Domain
 
@@ -107,15 +114,19 @@ If you want to use `theresidenttobacconist.com`:
      ```
    - OR add a `CNAME` record pointing to: `YOUR-USERNAME.github.io`
 
-2. **GitHub Pages Settings:**
-   - In your repo's **Settings > Pages**
-   - Under **Custom domain**, enter: `theresidenttobacconist.com`
-   - Click **Save**
-   - Check **Enforce HTTPS** (after DNS propagates, usually 24-48 hours)
+2. **GitHub Pages settings (owner only):**
+   - **Settings > Pages > Custom domain** reads `theresidenttobacconist.com`
+   - **Enforce HTTPS** is checked (available once DNS has propagated, usually
+     24-48 hours)
+   - These are the owner's to change, not a contributor's
 
-3. **CNAME File:**
-   - The `CNAME` file is already included in this repository
-   - If needed, verify it contains only: `theresidenttobacconist.com`
+3. **`CNAME` file at the repository root:**
+   - On the Actions route this file is what carries the custom domain into the
+     deploy: the workflow uploads the repository root, so `CNAME` travels with
+     the artifact
+   - It should contain exactly one line: `theresidenttobacconist.com`
+   - Deleting it drops the custom domain on the next deploy, so leave it in
+     place
 
 ## Contact Form Note
 

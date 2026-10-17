@@ -35,6 +35,7 @@ This is a static website for **The Resident Tobacconist**, a specialized steward
 ├── assets/
 │   ├── styles.css             # Global styles with CSS variables
 │   ├── logo.svg               # RT monogram
+│   ├── age-gate.js            # 21+ age gate (localStorage, 30 days); loaded on every page
 │   └── script.js              # Minimal JavaScript (optional)
 ├── robots.txt                 # Search engine directives
 ├── sitemap.xml                # Site map for SEO
@@ -193,7 +194,7 @@ All copy is written in semantic HTML. To update:
 This website is designed for B2B tobacco stewardship services:
 - No consumer sales functionality
 - No shopping cart or pricing
-- Includes 21+ notice in footer and contact page
+- 21+ age gate on every page (board ruling, 16 Oct 2026), plus the 21+ notice in footer and contact page
 - Compliance-first language throughout
 
 **Important:** This website does not constitute legal advice. Property operators should consult qualified legal counsel regarding tobacco program compliance in their jurisdiction.

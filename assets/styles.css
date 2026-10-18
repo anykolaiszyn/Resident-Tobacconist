@@ -1018,3 +1018,61 @@ footer {
     print-color-adjust: exact !important;
   }
 }
+
+/* ====================================
+   21+ Age Gate (assets/age-gate.js)
+   ==================================== */
+
+html.age-gate-pending body {
+  visibility: hidden;
+}
+
+.age-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+  visibility: visible;
+  background-color: var(--color-ink);
+}
+
+.age-gate-modal {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+  visibility: visible;
+  width: 92%;
+  max-width: 520px;
+  background-color: var(--color-charcoal);
+  border: 1px solid var(--accent);
+  border-radius: var(--border-radius);
+}
+
+.age-gate-content {
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+.age-gate-content p {
+  margin-bottom: var(--space-md);
+}
+
+.age-gate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.age-gate-modal .btn:focus-visible {
+  outline: 2px solid var(--color-warm-white);
+  outline-offset: 2px;
+}
+
+@media print {
+  .age-gate-overlay,
+  .age-gate-modal {
+    display: none;
+  }
+}

@@ -152,6 +152,10 @@ section {
   padding: var(--space-xl) 0;
 }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 /* ====================================
    Header & Navigation
    ==================================== */
